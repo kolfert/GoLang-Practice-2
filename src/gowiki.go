@@ -11,9 +11,11 @@ type Page struct {
 }
 
 func main() {
-	p1 := &Page{Title: "TestPage 1", Body: []byte("This is a sample page.")}
+	var pagename string
+	pagename = "TestPage 1"
+	p1 := &Page{Title: pagename, Body: []byte("This is a sample page.")}
 	p1.save()
-	p2, _ := loadPage("TestPage")
+	p2, _ := loadPage(pagename)
 	fmt.Println(string(p2.Body))
 }
 
@@ -30,8 +32,5 @@ func loadPage(title string) (*Page, error) {
 		return nil, err
 	}
 
-	return &Page{
-		Title: title,
-		Body:  body,
-	}, nil
+	return &Page{Title: title, Body: body}, nil
 }
